@@ -22,6 +22,14 @@ void main() {
     // silhouette outline, set a dark fragment color if the current fragment is located
     // near the edge of the 3D model. Use a reasonable value as the threshold for the
     // silhouette thickness (i.e. proximity to edge).
+    float diffuse = max(dot(interpolatedNormal, lightDirection),0.0);
+    
+    float layers = 4.0;
+    float layer = min(floor(diffuse*layers), layers-1.0) / (layers-1.0);
+    vec3 color = mix(toonColor2,toonColor,layer);
 
-    gl_FragColor = vec4(0.5, 0.0, 1.0, 1.0);
+    gl_FragColor = vec4(color,1.0);
+
+    if(fresnel<0.35)
+        gl_FragColor = vec4(outlineColor,1.0);
 }

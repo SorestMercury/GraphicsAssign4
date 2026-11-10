@@ -9,12 +9,20 @@ out vec3 interpolatedNormal;
 out vec3 lightDirection;
 out vec3 viewPosition;
 out float fresnel; // NOTE: this refers to the dot product of view direction and normal
+out vec3 sphereViewPos;
 
 void main() {
     // TODO:
     // Compute vertex position, light direction in VCS, and transform the normal to
     // an appropriate frame. Then determine if a vertex lies on the silhouette edge 
-    // of the model or not and set `fresnel` appropriately.
+    // of the model or not and set `fresnel` appropriately
+    viewPosition = (viewMatrix * modelMatrix * vec4(position, 1.0)).xyz;
+    vec3 viewDirection = normalize(-viewPosition);
+    interpolatedNormal = normalize(normalMatrix * normal);
+    sphereViewPos = (viewMatrix * vec4(spherePosition, 1.0)).xyz;
+    lightDirection = normalize(sphereViewPos-viewPosition);
+
+    fresnel = dot(viewDirection,interpolatedNormal);
 
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
 }
