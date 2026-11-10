@@ -7,11 +7,17 @@ uniform vec3 spherePosition;
 out vec3 viewPosition;
 out vec3 worldPosition;
 out vec3 interpolatedNormal;
+out vec3 sphereViewPos;
 
 void main() {
     
     // TODO: compute the out variables declared above. Think about which frame(s) each
     // variable should be defined with respect to
+    viewPosition = (viewMatrix * modelMatrix * vec4(position, 1.0)).xyz;
+    worldPosition = (modelMatrix * vec4(position, 1.0)).xyz;
+    interpolatedNormal = normalize(normalMatrix * normal);
+    sphereViewPos = (viewMatrix * vec4(spherePosition, 1.0)).xyz;
+
 
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
 }
