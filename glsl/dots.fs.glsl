@@ -26,7 +26,7 @@ void main() {
     vec3 mixColor1 = mix(color1,color1b,mixer);
     vec3 mixColor2 = mix(color2,color2b,mixer);
 
-    float layers = 4.0;
+    float layers = 3.0;
     float layer = min(floor(diffuse*layers), layers-1.0) / (layers-1.0);
     vec3 color = mix(mixColor1,mixColor2,layer);
 

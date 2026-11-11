@@ -182,9 +182,6 @@ for (let shader of Object.values(shaders)) {
       helmet.scale.set(10.0, 10.0, 10.0);
       helmet.parent = worldFrame;
 
-      helmet.traverse(child => {
-        if (child.isMesh) child.material = helmetPBRMaterial;
-      });
       scene.add(helmet);
     });
 
