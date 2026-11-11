@@ -273,8 +273,13 @@ N/A
 
 
 ## Screenshots
-[Include screenshots of your working program showing each part's functionality]
-- **Blinn-Phong:** [Screenshot of scene 1]
-- **Toon:** [Screenshot of scene 2, with the silhouette outlines visible]
-- **Polka Dots:** [Screenshots of scene 3 at two different times, showing the dots rolling and changing colour]
-- **PBR:** [Screenshot of scene 4 showing the textured helmet]
+- **Blinn-Phong:**
+  <img width="1040" height="716" alt="Screenshot_2026-11-10_23-18-18" src="https://github.com/user-attachments/assets/1235dbd6-cb9f-438c-8bc5-cb13b88f1b48" />
+- **Toon:**
+  <img width="1040" height="716" alt="Screenshot_2026-11-10_23-18-27" src="https://github.com/user-attachments/assets/5bd75215-734a-4991-b9f1-0298a13ae9f7" />
+- **Polka Dots:**
+  <img width="1040" height="716" alt="Screenshot_2026-11-10_23-18-41" src="https://github.com/user-attachments/assets/394f5ae7-fc3b-40fa-a200-c692936f8636" />
+  <img width="1111" height="740" alt="Screenshot_2026-11-10_23-24-38" src="https://github.com/user-attachments/assets/96e538e9-b0ff-45f2-b4db-8e69fddd5995" />
+
+- **PBR:**
+  <img width="1212" height="712" alt="Screenshot_2026-11-10_23-19-03" src="https://github.com/user-attachments/assets/fca67281-67ee-41c7-b8fb-ba611a881890" />
