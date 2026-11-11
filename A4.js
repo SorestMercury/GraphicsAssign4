@@ -81,9 +81,47 @@ const dotsMaterial = new THREE.ShaderMaterial({
 
 // TODO: Load the helmet's texture images in gltf/ (Default_albedo.jpg, Default_normal.jpg,
 // Default_AO.jpg, Default_metalRoughness.jpg, Default_emissive.jpg) using THREE.TextureLoader
+const textureLoader = new THREE.TextureLoader();
+
+const base = textureLoader.load('gltf/Default_albedo.jpg');
+base.flipY = false;
+base.wrapS = THREE.RepeatWrapping;
+base.wrapT = THREE.RepeatWrapping;
+
+const AO = textureLoader.load('gltf/Default_AO.jpg');
+AO.flipY = false;
+AO.wrapS = THREE.RepeatWrapping;
+AO.wrapT = THREE.RepeatWrapping;
+
+const emissiveMap = textureLoader.load('gltf/Default_emissive.jpg');
+emissiveMap.flipY = false;
+emissiveMap.wrapS = THREE.RepeatWrapping;
+emissiveMap.wrapT = THREE.RepeatWrapping;
+
+const emissive = new THREE.Color(1.0,0.0,1.0);
+const metalRoughness = textureLoader.load('gltf/Default_metalRoughness.jpg');
+metalRoughness.flipY = false;
+metalRoughness.wrapS = THREE.RepeatWrapping;
+metalRoughness.wrapT = THREE.RepeatWrapping;
+
+const normal = textureLoader.load('gltf/Default_normal.jpg');
+normal.flipY=false;
+normal.wrapS = THREE.RepeatWrapping;
+normal.wrapT = THREE.RepeatWrapping;
+
+base.colorSpace = THREE.SRGBColorSpace;
+emissiveMap.colorSpace = THREE.SRGBColorSpace;
 
 const helmetPBRMaterial = new THREE.MeshStandardMaterial({
   // TODO: pass texture maps to the material. And set material's metalness.
+  map: base,
+  aoMap: AO,
+  emissiveMap: emissiveMap,
+  emissive: emissive,
+  roughnessMap: metalRoughness,
+  metalnessMap: metalRoughness,
+  normalMap: normal,
+  metalness: 1.0,
 });
 
 // Load shaders
@@ -143,6 +181,10 @@ for (let shader of Object.values(shaders)) {
       helmet.rotation.y = -Math.PI / 3;
       helmet.scale.set(10.0, 10.0, 10.0);
       helmet.parent = worldFrame;
+
+      helmet.traverse(child => {
+        if (child.isMesh) child.material = helmetPBRMaterial;
+      });
       scene.add(helmet);
     });
 
